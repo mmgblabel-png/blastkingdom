@@ -46,7 +46,7 @@ namespace BlockPuzzleGameToolkit.Scripts.Services.Ads.AdUnits
 
         public bool IsAvailable()
         {
-            return AdsHandler != null && (AdsHandler.IsAvailable(this) || Loaded);
+            return AdsHandler != null && AdsHandler.IsAvailable(this);
         }
 
         public void Hide()

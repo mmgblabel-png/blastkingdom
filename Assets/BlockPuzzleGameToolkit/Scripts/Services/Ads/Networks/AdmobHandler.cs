@@ -65,24 +65,27 @@ namespace BlockPuzzleGameToolkit.Scripts.Services.Ads.Networks
         public override void Show(AdUnit adUnit)
         {
             #if ADMOB
-            _listener?.Show(adUnit);
-
             if (adUnit.AdReference.adType == EAdType.Interstitial)
             {
                 if (_interstitialAd != null && _interstitialAd.CanShowAd())
                 {
                     Debug.Log("Showing interstitial ad.");
+                    _listener?.Show(adUnit);
+                    adUnit.Loaded = false;
                     _interstitialAd.Show();
                 }
                 else
                 {
                     Debug.LogError("Interstitial ad is not ready yet.");
+                    _listener?.OnAdsShowFailed();
                 }
             }
             else if (adUnit.AdReference.adType == EAdType.Rewarded)
             {
                 if (_rewardedAd != null && _rewardedAd.CanShowAd())
                 {
+                    _listener?.Show(adUnit);
+                    adUnit.Loaded = false;
                     _rewardedAd.Show(reward =>
                     {
                         Debug.Log(string.Format("Rewarded ad granted a reward: {0} {1}",
@@ -93,6 +96,7 @@ namespace BlockPuzzleGameToolkit.Scripts.Services.Ads.Networks
                 else
                 {
                     Debug.LogError("Rewarded ad is not ready yet.");
+                    _listener?.OnAdsShowFailed();
                 }
             }
             #endif
@@ -179,6 +183,23 @@ namespace BlockPuzzleGameToolkit.Scripts.Services.Ads.Networks
 
         public override bool IsAvailable(AdUnit adUnit)
         {
+            #if ADMOB
+            if (adUnit == null)
+            {
+                return false;
+            }
+
+            if (adUnit.AdReference.adType == EAdType.Interstitial)
+            {
+                return _interstitialAd != null && _interstitialAd.CanShowAd();
+            }
+
+            if (adUnit.AdReference.adType == EAdType.Rewarded)
+            {
+                return _rewardedAd != null && _rewardedAd.CanShowAd();
+            }
+            #endif
+
             return false;
         }
 

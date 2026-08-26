@@ -22,6 +22,7 @@ namespace BlockPuzzleGameToolkit.Scripts.Services.IAP
     public class IAPManager : MonoBehaviour
     {
         public static IAPManager instance;
+        private const float InitializationTimeoutSeconds = 20f;
 
         private IIAPService iapController;
 
@@ -30,8 +31,21 @@ namespace BlockPuzzleGameToolkit.Scripts.Services.IAP
             #if UNITY_PURCHASING
             iapController = new IAPController();
             iapController.InitializePurchasing(products);
+            var initializationStartedAt = Time.realtimeSinceStartup;
             while (!iapController.IsInitialized())
             {
+                if (iapController is IAPController controller && controller.HasInitializationFailed)
+                {
+                    Debug.LogError("IAP is unavailable: " + controller.InitializationError);
+                    return;
+                }
+
+                if (Time.realtimeSinceStartup - initializationStartedAt >= InitializationTimeoutSeconds)
+                {
+                    Debug.LogError("IAP initialization timed out. Purchase buttons must remain unavailable until a later retry succeeds.");
+                    return;
+                }
+
                 await Task.Delay(100);
             }
             #else
@@ -67,17 +81,23 @@ namespace BlockPuzzleGameToolkit.Scripts.Services.IAP
 
         public void BuyProduct(string productId)
         {
+            if (iapController == null || !iapController.IsInitialized())
+            {
+                Debug.LogError("Cannot start purchase because Unity IAP is not initialized.");
+                return;
+            }
+
             iapController.BuyProduct(productId);
         }
 
         public decimal GetProductLocalizedPrice(string productId)
         {
-            return iapController.GetProductLocalizedPrice(productId);
+            return iapController?.GetProductLocalizedPrice(productId) ?? 0m;
         }
 
         public string GetProductLocalizedPriceString(string productId)
         {
-            return iapController.GetProductLocalizedPriceString(productId);
+            return iapController?.GetProductLocalizedPriceString(productId) ?? string.Empty;
         }
 
         public bool IsProductPurchased(string productId)

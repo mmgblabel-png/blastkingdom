@@ -23,6 +23,10 @@ namespace BlockPuzzleGameToolkit.Scripts.Services.IAP
     {
         private static IStoreController storeController;
         private IExtensionProvider extensionProvider;
+        private bool initializationFailed;
+
+        public bool HasInitializationFailed => initializationFailed;
+        public string InitializationError { get; private set; }
 
         public static event Action<string> OnSuccessfulPurchase;
         public static event Action<bool, List<string>> OnRestorePurchasesFinished;
@@ -56,6 +60,8 @@ namespace BlockPuzzleGameToolkit.Scripts.Services.IAP
 
         public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
         {
+            initializationFailed = false;
+            InitializationError = null;
             extensionProvider = extensions;
             storeController = controller;
             RestorePurchases((success, restoredProducts) =>
@@ -168,12 +174,19 @@ namespace BlockPuzzleGameToolkit.Scripts.Services.IAP
 
         public void OnInitializeFailed(InitializationFailureReason reason)
         {
-            Debug.Log("OnInitializeFailed InitializationFailureReason:" + reason);
+            MarkInitializationFailed(reason.ToString());
         }
 
         public void OnInitializeFailed(InitializationFailureReason error, string message)
         {
-            Debug.Log("OnInitializeFailed InitializationFailureReason:" + error + " message: " + message);
+            MarkInitializationFailed(error + ": " + message);
+        }
+
+        private void MarkInitializationFailed(string message)
+        {
+            initializationFailed = true;
+            InitializationError = message;
+            Debug.LogError("Unity IAP initialization failed: " + message);
         }
 
         public void RestorePurchases(Action<bool, List<string>> onRestore)

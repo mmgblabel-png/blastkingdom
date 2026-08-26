@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CoinsProduct2
   m_EditorClassIdentifier: 
   productType: 0
-  androidId: com.candysmith.coinspack2
+  androidId: com.mmgb.blastkingdom.coinspack2
   iosId: com.candysmith.coinspack2

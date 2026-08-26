@@ -65,6 +65,12 @@ namespace BlockPuzzleGameToolkit.Scripts.Services
                     adList.Add(t);
                     foreach (var adElement in t.adElements)
                     {
+                        if (!Debug.isDebugBuild && IsGoogleSampleAdUnit(adElement.placementId))
+                        {
+                            Debug.LogError("A Google sample ad unit is configured for a release build. The unit is disabled until a production ad unit is supplied.");
+                            continue;
+                        }
+
                         var adUnit = new AdUnit { PlacementId = adElement.placementId, AdReference = adElement.adReference, AdsHandler = t.adsHandler };
                         adUnit.OnInitialized = placementId => adUnit.Load();
                         adUnits.Add(adUnit);
@@ -73,9 +79,27 @@ namespace BlockPuzzleGameToolkit.Scripts.Services
             }
         }
 
+        private static bool IsGoogleSampleAdUnit(string placementId)
+        {
+            return !string.IsNullOrWhiteSpace(placementId) &&
+                   placementId.StartsWith("ca-app-pub-3940256099942544/", StringComparison.Ordinal);
+        }
+
         private void InitializeAds()
         {
             if (adsInitialized) return;
+
+            #if UMP_AVAILABLE && (UNITY_ANDROID || UNITY_IOS)
+            if (!ConsentInformation.CanRequestAds())
+            {
+                Debug.LogWarning("Ads remain disabled because UMP has not granted a requestable consent state.");
+                return;
+            }
+            #else
+            Debug.LogWarning("Ads remain disabled because the mobile UMP consent integration is unavailable.");
+            return;
+            #endif
+
             adsInitialized = true;
 
             Debug.Log("Initializing ads with consent status");
@@ -100,15 +124,6 @@ namespace BlockPuzzleGameToolkit.Scripts.Services
             if (consentInfoUpdateInProgress) return;
             consentInfoUpdateInProgress = true;
 
-            // Skip consent if disabled in settings
-            if (GameManager.instance.GameSettings.skipConsentPopup)
-            {
-                Debug.Log("Consent popup disabled in settings - skipping consent flow");
-                InitializeAds();
-                consentInfoUpdateInProgress = false;
-                return;
-            }
-
 #if UMP_AVAILABLE && (UNITY_ANDROID || UNITY_IOS)
             var request = new ConsentRequestParameters();
             
@@ -132,7 +147,7 @@ namespace BlockPuzzleGameToolkit.Scripts.Services
 
             ConsentInformation.Update(request, OnConsentInfoUpdated);
 #else
-            InitializeAds();
+            Debug.LogWarning("Advertising is disabled because UMP consent support is unavailable in this build.");
             consentInfoUpdateInProgress = false;
 #endif
         }
@@ -144,8 +159,14 @@ namespace BlockPuzzleGameToolkit.Scripts.Services
             {
                 Debug.LogError($"Consent info update error: {consentError}");
                 consentInfoUpdateInProgress = false;
-                // Initialize ads even if consent update failed
-                InitializeAds();
+                if (ConsentInformation.CanRequestAds())
+                {
+                    InitializeAds();
+                }
+                else
+                {
+                    Debug.LogWarning("Advertising remains disabled because consent information could not be refreshed.");
+                }
                 return;
             }
 
@@ -169,8 +190,14 @@ namespace BlockPuzzleGameToolkit.Scripts.Services
                 Debug.Log($"Can request personalized ads: {ConsentInformation.CanRequestAds()}");
             }
 
-            // Initialize ads after consent is handled (whether accepted or denied)
-            InitializeAds();
+            if (ConsentInformation.CanRequestAds())
+            {
+                InitializeAds();
+            }
+            else
+            {
+                Debug.LogWarning("Advertising remains disabled because consent does not permit requesting ads.");
+            }
         }
 #endif
 
@@ -316,6 +343,18 @@ namespace BlockPuzzleGameToolkit.Scripts.Services
                 return;
             }
 
+            if (adRef == null)
+            {
+                Debug.LogError("Cannot show an ad without an ad reference.");
+                return;
+            }
+
+            if (GameManager.instance.IsNoAdsPurchased() && adRef.adType != EAdType.Rewarded)
+            {
+                Debug.Log("Skipping non-rewarded ad because the ad-free entitlement is active.");
+                return;
+            }
+
             // Get current level number
             int currentLevel = GameDataManager.GetLevelNum();
 
@@ -430,7 +469,7 @@ namespace BlockPuzzleGameToolkit.Scripts.Services
 #if UMP_AVAILABLE
             return ConsentInformation.CanRequestAds();
 #else
-            return true;
+            return false;
 #endif
         }
 

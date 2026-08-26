@@ -169,7 +169,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.4
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Android: com.CandySmith.BlockPuzzleGameToolkit
+    Android: com.mmgb.blastkingdom
     Standalone: com.CandySmith.BlockPuzzleGameToolkit
     iPhone: com.CandySmith.BlockPuzzleGameToolkit
   buildNumber:

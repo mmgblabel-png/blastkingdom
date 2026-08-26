@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: NoAds
   m_EditorClassIdentifier: 
   productType: 1
-  androidId: com.candysmith.noads
+  androidId: com.mmgb.blastkingdom.noads
   iosId: com.candysmith.noads
