@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a8958a46ffd4242f3a14f568e81ba1d8
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Resources/Popups/Win_Bonus.prefab
+  uploadId: 967106

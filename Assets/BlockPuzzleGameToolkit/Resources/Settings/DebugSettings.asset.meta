@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 67a76b458aaa4206b3416e7e0ca0c87a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Resources/Settings/DebugSettings.asset
+  uploadId: 967106

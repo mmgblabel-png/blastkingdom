@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8e4d86e3092bb4f3b8b1a9a24ecbc4cf
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Resources/Popups/RewardPopupCoins.prefab
+  uploadId: 967106

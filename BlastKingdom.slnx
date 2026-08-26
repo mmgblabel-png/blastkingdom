@@ -1,0 +1,15 @@
+﻿<Solution>
+  <Project Path="DOTween.Modules.csproj" />
+  <Project Path="mmgb.BlastKingdom.Main.csproj" />
+  <Project Path="CandySmith.BlockPuzzle.LevelEditor.csproj" />
+  <Project Path="mmgb.Localization.Editor.csproj" />
+  <Project Path="CandySmith.BlockPuzzle.Drawers.csproj" />
+  <Project Path="mmgb.Ads.csproj" />
+  <Project Path="Reordable.csproj" />
+  <Project Path="mmgb.LevelPlay.csproj" />
+  <Project Path="mmgb.IAP.csproj" />
+  <Project Path="ReordableEditor.csproj" />
+  <Project Path="ImageCreatorEditor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+</Solution>

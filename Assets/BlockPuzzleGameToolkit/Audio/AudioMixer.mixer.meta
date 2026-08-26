@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e4017410999f44635baa4cb3bb8320b4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Audio/AudioMixer.mixer
+  uploadId: 967106

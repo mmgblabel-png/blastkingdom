@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f202c6710d19e467a8b4616d6cd807e5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Materials/greyscaleUI.mat
+  uploadId: 967106

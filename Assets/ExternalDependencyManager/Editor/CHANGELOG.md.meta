@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: aba4ee01c6d145f7bf2d944d892f709a
+labels:
+- gvh
+- gvh_version-10.4.2
+- gvhp_exportpath-ExternalDependencyManager/Editor/CHANGELOG.md
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/ExternalDependencyManager/Editor/CHANGELOG.md
+  uploadId: 967106

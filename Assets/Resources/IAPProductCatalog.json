@@ -1,0 +1,148 @@
+{
+	"appleSKU": "",
+	"appleTeamID": "",
+	"enableCodelessAutoInitialization": true,
+	"enableUnityGamingServicesAutoInitialization": false,
+	"products": [
+		{
+			"id": "com.mmgb.blastkingdom.noads",
+			"type": 1,
+			"storeIDs": [
+				{
+					"id": "com.mmgb.blastkingdom.noads",
+					"store": "GooglePlay"
+				},
+				{
+					"id": "com.mmgb.blastkingdom.noads",
+					"store": "AppleAppStore"
+				}
+			],
+			"defaultDescription": {
+				"googleLocale": 21,
+				"title": "No Ads",
+				"description": "Remove ads permanently"
+			},
+			"screenshotPath": "",
+			"applePriceTier": 0,
+			"googlePrice": {
+				"data": [0, 0, 0, 0],
+				"num": 0.0
+			},
+			"pricingTemplateID": "",
+			"descriptions": [],
+			"payouts": []
+		},
+		{
+			"id": "com.mmgb.blastkingdom.coinspack1",
+			"type": 0,
+			"storeIDs": [
+				{
+					"id": "com.mmgb.blastkingdom.coinspack1",
+					"store": "GooglePlay"
+				},
+				{
+					"id": "com.mmgb.blastkingdom.coinspack1",
+					"store": "AppleAppStore"
+				}
+			],
+			"defaultDescription": {
+				"googleLocale": 21,
+				"title": "Coins Pack 1",
+				"description": "A small coin pack"
+			},
+			"screenshotPath": "",
+			"applePriceTier": 0,
+			"googlePrice": {
+				"data": [0, 0, 0, 0],
+				"num": 0.0
+			},
+			"pricingTemplateID": "",
+			"descriptions": [],
+			"payouts": []
+		},
+		{
+			"id": "com.mmgb.blastkingdom.coinspack2",
+			"type": 0,
+			"storeIDs": [
+				{
+					"id": "com.mmgb.blastkingdom.coinspack2",
+					"store": "GooglePlay"
+				},
+				{
+					"id": "com.mmgb.blastkingdom.coinspack2",
+					"store": "AppleAppStore"
+				}
+			],
+			"defaultDescription": {
+				"googleLocale": 21,
+				"title": "Coins Pack 2",
+				"description": "A medium coin pack"
+			},
+			"screenshotPath": "",
+			"applePriceTier": 0,
+			"googlePrice": {
+				"data": [0, 0, 0, 0],
+				"num": 0.0
+			},
+			"pricingTemplateID": "",
+			"descriptions": [],
+			"payouts": []
+		},
+		{
+			"id": "com.mmgb.blastkingdom.coinspack6",
+			"type": 0,
+			"storeIDs": [
+				{
+					"id": "com.mmgb.blastkingdom.coinspack6",
+					"store": "GooglePlay"
+				},
+				{
+					"id": "com.mmgb.blastkingdom.coinspack6",
+					"store": "AppleAppStore"
+				}
+			],
+			"defaultDescription": {
+				"googleLocale": 21,
+				"title": "Coins Pack 3",
+				"description": "A large coin pack"
+			},
+			"screenshotPath": "",
+			"applePriceTier": 0,
+			"googlePrice": {
+				"data": [0, 0, 0, 0],
+				"num": 0.0
+			},
+			"pricingTemplateID": "",
+			"descriptions": [],
+			"payouts": []
+		},
+		{
+			"id": "com.mmgb.blastkingdom.coinspack4",
+			"type": 0,
+			"storeIDs": [
+				{
+					"id": "com.mmgb.blastkingdom.coinspack4",
+					"store": "GooglePlay"
+				},
+				{
+					"id": "com.mmgb.blastkingdom.coinspack4",
+					"store": "AppleAppStore"
+				}
+			],
+			"defaultDescription": {
+				"googleLocale": 21,
+				"title": "Coins Pack 4",
+				"description": "The largest coin pack"
+			},
+			"screenshotPath": "",
+			"applePriceTier": 0,
+			"googlePrice": {
+				"data": [0, 0, 0, 0],
+				"num": 0.0
+			},
+			"pricingTemplateID": "",
+			"descriptions": [],
+			"payouts": []
+		}
+	]
+}

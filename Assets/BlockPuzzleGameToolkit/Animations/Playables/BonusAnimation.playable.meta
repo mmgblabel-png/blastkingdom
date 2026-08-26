@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ff76abd47f1ec4b1c9c5c61b2c291f5a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Animations/Playables/BonusAnimation.playable
+  uploadId: 967106

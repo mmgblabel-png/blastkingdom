@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 0e24f7ee9a9a49efaee3ca50d3871157
+timeCreated: 1725704706
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Scripts/System/SerializeTypePropertyAttribute.cs
+  uploadId: 967106

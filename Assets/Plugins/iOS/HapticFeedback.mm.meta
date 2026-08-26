@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: cbfaede381004ac784b15b5491659521
+timeCreated: 1729853676
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/Plugins/iOS/HapticFeedback.mm
+  uploadId: 967106

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ce505f4654df84fb5b8d4e7d926c25aa
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Prefabs/GUI/Great.prefab
+  uploadId: 967106

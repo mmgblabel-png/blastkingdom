@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dcf2236e3a68649fc9c9d38b57c60840
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Prefabs/GUI/AnimAndFX/Sparkle_effect.prefab
+  uploadId: 967106

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a992f835f0ea049dab125f76515c4725
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Animations/Playables/ComboText.playable
+  uploadId: 967106

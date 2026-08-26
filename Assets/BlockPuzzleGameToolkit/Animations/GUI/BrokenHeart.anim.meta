@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e56aab69adaab480cbce415fc594d6ab
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Animations/GUI/BrokenHeart.anim
+  uploadId: 967106

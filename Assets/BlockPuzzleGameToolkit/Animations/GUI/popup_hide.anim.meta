@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2510dc9b122d9da45b43f9773f07acfe
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Animations/GUI/popup_hide.anim
+  uploadId: 967106

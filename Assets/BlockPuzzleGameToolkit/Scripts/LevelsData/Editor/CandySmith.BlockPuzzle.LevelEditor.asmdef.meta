@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bdcbc833223cb1544b14cb3c13e1f8ee
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Scripts/LevelsData/Editor/CandySmith.BlockPuzzle.LevelEditor.asmdef
+  uploadId: 967106

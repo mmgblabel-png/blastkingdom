@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 8d28431513d24508bed75d96f343e797
+timeCreated: 1694366333
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Scripts/AnimationBehaviours/RandomWaitTime.cs
+  uploadId: 967106

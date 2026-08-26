@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f37e7fb61c77e50429c78c897ea4e3bd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Animations/GUI/popup_controller.controller
+  uploadId: 967106

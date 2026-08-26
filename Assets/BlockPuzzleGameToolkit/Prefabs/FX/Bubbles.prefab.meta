@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 41f45a58d8fe848eeb832c514ac76dc9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Prefabs/FX/Bubbles.prefab
+  uploadId: 967106

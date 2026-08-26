@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 16491c9ea2c249f488cb57b8663748be
+timeCreated: 1729267057
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Scripts/Popups/FailedScore.cs
+  uploadId: 967106

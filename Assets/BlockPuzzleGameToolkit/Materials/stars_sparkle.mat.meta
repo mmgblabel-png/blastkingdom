@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e8221c72a867a4d94ab9e017d3496e14
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Materials/stars_sparkle.mat
+  uploadId: 967106

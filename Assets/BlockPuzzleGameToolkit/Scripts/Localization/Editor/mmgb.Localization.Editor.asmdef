@@ -1,0 +1,27 @@
+{
+  "name": "mmgb.Localization.Editor",
+  "rootNamespace": "",
+  "references": [
+    " UnityEngine",
+    " UnityEditor",
+    "UnityEditor.UI",
+    "Unity.TextMeshPro.Editor",
+    "Unity.TextMeshPro",
+    "Reordable",
+    "mmgb.BlastKingdom.Main",
+    "mmgb.Ads",
+    "mmgb.IAP",
+    "DOTween.Modules"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

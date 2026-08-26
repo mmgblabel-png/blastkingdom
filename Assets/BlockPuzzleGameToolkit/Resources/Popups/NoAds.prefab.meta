@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e9e768e2343f0402a860b2fada3e69e1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Resources/Popups/NoAds.prefab
+  uploadId: 967106

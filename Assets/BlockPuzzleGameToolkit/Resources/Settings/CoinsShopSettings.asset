@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9dc87feff54cc984e76548c50cde5f, type: 3}
+  m_Name: CoinsShopSettings
+  m_EditorClassIdentifier: 
+  defaultPrefab: {fileID: 8504871770900910552, guid: b2f88ad68646c4418b9d38b284556714, type: 3}
+  coinsProducts:
+    keys:
+    - {fileID: 11400000, guid: 2923d2f0d156243a1b0c5b42520d167b, type: 2}
+    - {fileID: 11400000, guid: 806a87b4a544b4d0a8bfa0ccd27a9de7, type: 2}
+    - {fileID: 11400000, guid: e9b459296fb94459ca8a7fa41e909730, type: 2}
+    - {fileID: 11400000, guid: b07a9dfbefd2c4749af88de55c02ce4e, type: 2}
+    - {fileID: 11400000, guid: b07a9dfbefd2c4749af88de55c02ce4e, type: 2}
+    values: 0a00000019000000780000009600000000000000
+  products:
+  - productID: {fileID: 11400000, guid: 2923d2f0d156243a1b0c5b42520d167b, type: 2}
+    count: 20
+    prefab: {fileID: 8504871770900910552, guid: b2f88ad68646c4418b9d38b284556714, type: 3}
+    price: 1.99
+  - productID: {fileID: 11400000, guid: 806a87b4a544b4d0a8bfa0ccd27a9de7, type: 2}
+    count: 40
+    prefab: {fileID: 8504871770900910552, guid: b2f88ad68646c4418b9d38b284556714, type: 3}
+    price: 2.99
+  - productID: {fileID: 11400000, guid: e9b459296fb94459ca8a7fa41e909730, type: 2}
+    count: 80
+    prefab: {fileID: 8504871770900910552, guid: b2f88ad68646c4418b9d38b284556714, type: 3}
+    price: 3.99
+  - productID: {fileID: 11400000, guid: b07a9dfbefd2c4749af88de55c02ce4e, type: 2}
+    count: 150
+    prefab: {fileID: 8504871770900910552, guid: b2f88ad68646c4418b9d38b284556714, type: 3}
+    price: 4.99
+  migrated: 1

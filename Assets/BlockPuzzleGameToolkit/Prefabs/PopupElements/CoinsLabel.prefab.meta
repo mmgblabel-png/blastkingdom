@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d3478785d57d94dc3bcdff5abdcada95
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Prefabs/PopupElements/CoinsLabel.prefab
+  uploadId: 967106

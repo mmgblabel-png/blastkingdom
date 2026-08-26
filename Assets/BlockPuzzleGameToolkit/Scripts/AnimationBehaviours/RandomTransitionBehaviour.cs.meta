@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 5f71eb9df3f54f26a7fca082f2b165bc
+timeCreated: 1726207741
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Scripts/AnimationBehaviours/RandomTransitionBehaviour.cs
+  uploadId: 967106

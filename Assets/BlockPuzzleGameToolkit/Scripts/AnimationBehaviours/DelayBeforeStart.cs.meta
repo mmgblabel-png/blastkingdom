@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: c20ba3464f284bed8370fcefe71e9b5d
+timeCreated: 1694162792
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Scripts/AnimationBehaviours/DelayBeforeStart.cs
+  uploadId: 967106

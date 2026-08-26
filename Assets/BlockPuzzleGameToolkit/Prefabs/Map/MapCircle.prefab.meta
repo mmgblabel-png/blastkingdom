@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a5d235b79a30449f3933c7de5650daed
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Prefabs/Map/MapCircle.prefab
+  uploadId: 967106

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c172cddc7f7834e13ad224d44380c8c3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Prefabs/ScriptableAds/AdsHandlers/IronsourceBannerHandler.asset
+  uploadId: 967106

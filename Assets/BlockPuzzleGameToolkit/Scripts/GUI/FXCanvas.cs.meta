@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: b6413f9cec49418a89c0595be4a8f0e2
+timeCreated: 1730275156
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Scripts/GUI/FXCanvas.cs
+  uploadId: 967106

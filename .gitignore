@@ -1,0 +1,57 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Ll]ogs/
+[Bb]uild/
+[Bb]uilds/
+[Ll]obj/
+[Bb]in/
+[Dd]ist/
+[Bb]urstDebugInformation_DoNotShip/
+Backup*/
+*_BackUpThisFolder_ButDontShipItWithYourGame/
+*.aab
+*.apk
+*.unitypackage
+
+# IDE / editor metadata
+.vscode/
+.vs/
+.utmp/
+.plastic/
+.idea/
+*.csproj.user
+*.suo
+*.user
+*.userprefs
+
+# Local signing / environment
+Keystore/
+*.keystore
+*.jks
+*.pfx
+*.p12
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Unity generated player data
+*.pidb
+*.booproj
+*.sln.docstates
+*.mdb
+*.opendb
+*.VC.db
+
+# Crash reports
+sysinfo.txt
+
+# Keep real project source tracked
+!Assets/
+!ProjectSettings/
+!Packages/
+!*.csproj
+!*.sln
+!*.slnx

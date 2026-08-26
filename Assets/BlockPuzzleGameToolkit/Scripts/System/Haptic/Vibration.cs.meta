@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 29ec5197bae34b0d9bd40553ecd33494
+timeCreated: 1729849644
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Scripts/System/Haptic/Vibration.cs
+  uploadId: 967106

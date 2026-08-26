@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 34ce9903e0c2c4aa6a8f4d3ddfc04941
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Animations/check-icon.controller
+  uploadId: 967106

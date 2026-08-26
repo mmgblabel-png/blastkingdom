@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 72d63649b5b5c43c2918b54c24343860
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Prefabs/GUI/AnimAndFX/BonusAnimation.prefab
+  uploadId: 967106

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c7a5da956126b416f91a11f29775f94a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Resources/FX/CoinsSpendFX.prefab
+  uploadId: 967106

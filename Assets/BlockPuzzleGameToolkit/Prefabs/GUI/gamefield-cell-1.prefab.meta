@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7b57f6baca8664e2c892e9527f5091ec
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Prefabs/GUI/gamefield-cell-1.prefab
+  uploadId: 967106

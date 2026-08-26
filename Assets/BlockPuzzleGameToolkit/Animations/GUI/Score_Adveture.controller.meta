@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a12d796a4e51a490ba1b356759dcdbbb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Animations/GUI/Score_Adveture.controller
+  uploadId: 967106

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dc18ea7555ed84718afa0e2948ad23d6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Materials/CoinParticles.mat
+  uploadId: 967106

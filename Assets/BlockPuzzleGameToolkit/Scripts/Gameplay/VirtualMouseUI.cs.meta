@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 22ad4e27333e4e7da8ff07ce4de6c4c1
+timeCreated: 1741938131
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Scripts/Gameplay/VirtualMouseUI.cs
+  uploadId: 967106

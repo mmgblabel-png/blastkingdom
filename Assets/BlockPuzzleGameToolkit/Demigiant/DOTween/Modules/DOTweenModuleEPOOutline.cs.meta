@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: e944529dcaee98f4e9498d80e541d93e
+timeCreated: 1602593330
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297325
+  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+  packageVersion: 2.2.7
+  assetPath: Assets/BlockPuzzleGameToolkit/Demigiant/DOTween/Modules/DOTweenModuleEPOOutline.cs
+  uploadId: 967106
