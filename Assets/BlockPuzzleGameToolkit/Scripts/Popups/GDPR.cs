@@ -11,6 +11,7 @@
 // // THE SOFTWARE.
 
 using BlockPuzzleGameToolkit.Scripts.System;
+using BlockPuzzleGameToolkit.Scripts.Services;
 using UnityEngine;
 
 namespace BlockPuzzleGameToolkit.Scripts.Popups
@@ -20,12 +21,16 @@ namespace BlockPuzzleGameToolkit.Scripts.Popups
         public void OnUserClickAccept()
         {
             PlayerPrefs.SetInt("npa", 0);
+            PlayerPrefs.Save();
+            AdsManager.instance?.OnConsentPreferenceChanged();
             Close();
         }
 
         public void OnUserClickCancel()
         {
             PlayerPrefs.SetInt("npa", 1);
+            PlayerPrefs.Save();
+            AdsManager.instance?.OnConsentPreferenceChanged();
             Close();
         }
 

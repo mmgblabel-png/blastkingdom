@@ -12,6 +12,7 @@
 
 using System.Collections.Generic;
 using BlockPuzzleGameToolkit.Scripts.Services.Ads.AdUnits;
+using BlockPuzzleGameToolkit.Scripts.System;
 using UnityEngine;
 
 namespace BlockPuzzleGameToolkit.Scripts.Services.Ads
@@ -64,6 +65,7 @@ namespace BlockPuzzleGameToolkit.Scripts.Services.Ads
 
         public void OnAdsShowFailed()
         {
+            MenuManager.SetAdShowing(false);
             if (_adUnit != null)
             {
                 _adUnit.Loaded = false;

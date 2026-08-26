@@ -97,19 +97,19 @@ MonoBehaviour:
         showOnOpen: 1
         showOnClose: 0
   - name: LevelPlay  Android
-    enable: 0
+    enable: 1
     testInEditor: 0
     platforms: 0
-    appId: 20a29dc05
+    appId: 6144908
     adsHandler: {fileID: 11400000, guid: 4d75985c87e4d4a06aeb409e363ab577, type: 2}
     adElements:
-    - placementId: hy3t5ngv8n5wh4wg
+    - placementId: 0hwfeczdewkpcr3t
       adReference: {fileID: 11400000, guid: f9303f4b583464bc08f45f673b581f90, type: 2}
       popup:
         popup: {fileID: 4016055804716088334, guid: 42fecf35a1e774a20a5f0e45c3d3c10e, type: 3}
         showOnOpen: 1
         showOnClose: 0
-    - placementId: gfs5f8pbkcm7o5dz
+    - placementId: a73imhekil2b1lun
       adReference: {fileID: 11400000, guid: c831bd9c00a134b8db57a0d96d34a238, type: 2}
       popup:
         popup: {fileID: 0}
@@ -129,20 +129,20 @@ MonoBehaviour:
         showOnOpen: 0
         showOnClose: 0
   - name: LevelPlay banner android
-    enable: 0
+    enable: 1
     testInEditor: 1
     platforms: 0
-    appId: 
+    appId: 6144908
     adsHandler: {fileID: 11400000, guid: c172cddc7f7834e13ad224d44380c8c3, type: 2}
     adElements:
-    - placementId: 
+    - placementId: t9e13g4jns1gczza
       adReference: {fileID: 11400000, guid: 4396e62ba27584ef79ac362c4948ee63, type: 2}
       popup:
         popup: {fileID: 0}
         showOnOpen: 0
         showOnClose: 0
   - name: admob  iOS
-    enable: 1
+    enable: 0
     testInEditor: 1
     platforms: 1
     appId: ca-app-pub-1921802893067184~3779034969
@@ -161,7 +161,7 @@ MonoBehaviour:
         showOnOpen: 0
         showOnClose: 0
   - name: admob  Android
-    enable: 1
+    enable: 0
     testInEditor: 1
     platforms: 0
     appId: ca-app-pub-1921802893067184~8049698250
@@ -180,7 +180,7 @@ MonoBehaviour:
         showOnOpen: 0
         showOnClose: 0
   - name: Admob banner IOS
-    enable: 1
+    enable: 0
     testInEditor: 1
     platforms: 1
     appId: ca-app-pub-1921802893067184~3779034969
@@ -193,7 +193,7 @@ MonoBehaviour:
         showOnOpen: 0
         showOnClose: 0
   - name: Admob banner android
-    enable: 1
+    enable: 0
     testInEditor: 1
     platforms: 0
     appId: ca-app-pub-1921802893067184~8049698250

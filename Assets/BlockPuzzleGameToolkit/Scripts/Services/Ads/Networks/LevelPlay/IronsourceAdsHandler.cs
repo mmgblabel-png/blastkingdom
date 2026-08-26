@@ -1,242 +1,175 @@
 // // ©2015 - 2026 Candy Smith
-// // All rights reserved
-// // Redistribution of this software is strictly not allowed.
-// // Copy of this software can be obtained from unity asset store only.
-// // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// // FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-// // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// // THE SOFTWARE.
+// // All rights reserved.
 
 #if IRONSOURCE
 using Unity.Services.LevelPlay;
 #endif
 using BlockPuzzleGameToolkit.Scripts.Services.Ads.AdUnits;
 using UnityEngine;
-#if UMP_AVAILABLE
-using GoogleMobileAds.Ump.Api;
-#endif
 
 namespace BlockPuzzleGameToolkit.Scripts.Services.Ads.Networks
 {
+    /// <summary>
+    /// Owns the one LevelPlay SDK initialization for the non-banner formats.
+    /// It stays inactive until the player has made a stored consent choice.
+    /// </summary>
     public class IronsourceAdsHandler : AdsHandlerBase
     {
-        private IAdsListener _listener;
-        #if IRONSOURCE
-        private LevelPlayInterstitialAd _interstitialAd;
-        private LevelPlayRewardedAd _rewardedAd;
-        #endif
+        private IAdsListener listener;
+        private bool initializationRequested;
+        private bool initialized;
+        private bool rewardedGranted;
 
-        private void Init(string _id)
+#if IRONSOURCE
+        private LevelPlayInterstitialAd interstitialAd;
+        private LevelPlayRewardedAd rewardedAd;
+#endif
+
+        public override void Init(string appKey, bool adSettingTestMode, IAdsListener adsListener)
         {
-            #if IRONSOURCE
-            LevelPlay.ValidateIntegration();
+            listener = adsListener;
 
-            // Set consent for LevelPlay
-            SetConsentStatus();
+#if IRONSOURCE
+            if (initializationRequested) return;
+            if (string.IsNullOrWhiteSpace(appKey))
+            {
+                Debug.LogError("LevelPlay initialization is blocked because the Android app key is empty.");
+                listener?.OnInitFailed();
+                return;
+            }
 
-            // Register initialization events
-            LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
-            LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
+            var consentChoice = PlayerPrefs.GetInt("npa", -1);
+            if (consentChoice == -1)
+            {
+                Debug.LogWarning("LevelPlay initialization is blocked until the player makes a consent choice.");
+                listener?.OnInitFailed();
+                return;
+            }
 
-            LevelPlay.Init(_id);
-            #endif
+            initializationRequested = true;
+            LevelPlay.OnInitSuccess += OnInitializationSucceeded;
+            LevelPlay.OnInitFailed += OnInitializationFailed;
+            ApplyStoredConsent(consentChoice);
+            LevelPlay.Init(appKey);
+#else
+            Debug.LogWarning("LevelPlay package is unavailable; ads remain disabled.");
+            listener?.OnInitFailed();
+#endif
         }
 
-        private void SetConsentStatus()
+#if IRONSOURCE
+        private static void ApplyStoredConsent(int consentChoice)
         {
-            #if IRONSOURCE && UMP_AVAILABLE
-            bool hasConsent = ConsentInformation.CanRequestAds();
-            Debug.Log($"LevelPlay consent status: {hasConsent}");
-
-            // Set consent for GDPR
-            LevelPlay.SetConsent(hasConsent);
-
-            // For CCPA compliance (optional)
-            LevelPlay.SetMetaData("do_not_sell", hasConsent ? "false" : "true");
-            #elif IRONSOURCE
-            // Default to no consent if UMP not available
-            LevelPlay.SetConsent(false);
-            Debug.Log("UMP not available - setting LevelPlay consent to false");
-            #endif
+            var personalizedConsent = consentChoice == 0;
+            LevelPlay.SetConsent(personalizedConsent);
+            LevelPlay.SetMetaData("do_not_sell", personalizedConsent ? "false" : "true");
         }
 
-        private void SetListener(IAdsListener listener)
+        private void OnInitializationSucceeded(LevelPlayConfiguration configuration)
         {
-            _listener = listener;
-            Debug.Log(_listener);
+            initialized = true;
+            listener?.OnAdsInitialized();
         }
 
-        #if IRONSOURCE
-        private void SdkInitializationCompletedEvent(LevelPlayConfiguration config)
+        private void OnInitializationFailed(LevelPlayInitError error)
         {
-            Debug.Log("LevelPlay SdkInitializationCompletedEvent");
-            _listener?.OnAdsInitialized();
+            initializationRequested = false;
+            Debug.LogError($"LevelPlay initialization failed: {error}");
+            listener?.OnInitFailed();
         }
 
-        private void SdkInitializationFailedEvent(LevelPlayInitError error)
+        private void EnsureInterstitial(AdUnit adUnit)
         {
-            Debug.Log($"LevelPlay SdkInitializationFailedEvent: {error}");
-            _listener?.OnInitFailed();
+            if (interstitialAd != null) return;
+            interstitialAd = new LevelPlayInterstitialAd(adUnit.PlacementId);
+            interstitialAd.OnAdLoaded += info => listener?.OnAdsLoaded(info.AdUnitId);
+            interstitialAd.OnAdLoadFailed += error => listener?.OnAdsLoadFailed();
+            interstitialAd.OnAdDisplayed += info => listener?.OnAdsShowStart();
+            interstitialAd.OnAdDisplayFailed += (info, error) =>
+            {
+                listener?.OnAdsShowFailed();
+                interstitialAd.LoadAd();
+            };
+            interstitialAd.OnAdClosed += info =>
+            {
+                listener?.OnAdsShowComplete();
+                interstitialAd.LoadAd();
+            };
         }
 
-        // Interstitial event handlers
-        private void InterstitialAdLoadedEvent(LevelPlayAdInfo adInfo)
+        private void EnsureRewarded(AdUnit adUnit)
         {
-            Debug.Log("LevelPlay OnInterstitialAdReady");
-            _listener?.OnAdsLoaded(adInfo.AdUnitId);
+            if (rewardedAd != null) return;
+            rewardedAd = new LevelPlayRewardedAd(adUnit.PlacementId);
+            rewardedAd.OnAdLoaded += info => listener?.OnAdsLoaded(info.AdUnitId);
+            rewardedAd.OnAdLoadFailed += error => listener?.OnAdsLoadFailed();
+            rewardedAd.OnAdDisplayed += info => listener?.OnAdsShowStart();
+            rewardedAd.OnAdDisplayFailed += (info, error) =>
+            {
+                listener?.OnAdsShowFailed();
+                rewardedAd.LoadAd();
+            };
+            rewardedAd.OnAdRewarded += (info, reward) =>
+            {
+                rewardedGranted = true;
+                listener?.OnAdsShowComplete();
+            };
+            rewardedAd.OnAdClosed += info =>
+            {
+                if (!rewardedGranted) listener?.OnAdsShowFailed();
+                rewardedGranted = false;
+                rewardedAd.LoadAd();
+            };
         }
+#endif
 
-        private void InterstitialAdLoadFailedEvent(LevelPlayAdError error)
+        public override void Load(AdUnit adUnit)
         {
-            Debug.Log($"LevelPlay InterstitialAdLoadFailedEvent: {error}");
-            _listener?.OnAdsLoadFailed();
-        }
-
-        private void InterstitialAdDisplayFailedEvent(LevelPlayAdInfo levelPlayAdInfo, LevelPlayAdError levelPlayAdError)
-        {
-            Debug.Log($"LevelPlay InterstitialAdDisplayFailedEvent: {levelPlayAdError}");
-            _listener?.OnAdsShowFailed();
-            LevelPlay.SetPauseGame(false);
-        }
-
-        #if LEVELPLAY8
-        private void InterstitialAdDisplayFailedEvent(LevelPlayAdDisplayInfoError obj)
-        {
-            Debug.Log($"LevelPlay InterstitialAdDisplayFailedEvent: {obj}");
-            _listener?.OnAdsShowFailed();
-            LevelPlay.SetPauseGame(false);
-        }
-        #endif
-
-
-        // Rewarded video event handlers
-        private void RewardedAdLoadedEvent(LevelPlayAdInfo adInfo)
-        {
-            Debug.Log("LevelPlay OnRewardedVideoAdReady");
-            _listener?.OnAdsLoaded(adInfo.AdUnitId);
-        }
-
-        private void RewardedAdLoadFailedEvent(LevelPlayAdError error)
-        {
-            Debug.Log($"LevelPlay RewardedVideoAdLoadFailedEvent: {error}");
-            _listener?.OnAdsLoadFailed();
-        }
-
-        private void RewardedAdDisplayFailedEvent(LevelPlayAdInfo levelPlayAdInfo, LevelPlayAdError levelPlayAdError)
-        {
-            Debug.Log($"LevelPlay RewardedVideoAdShowFailedEvent: {levelPlayAdError}");
-            _listener?.OnAdsShowFailed();
-            LevelPlay.SetPauseGame(false);
-        }
-
-        #if LEVELPLAY8
-        private void RewardedAdDisplayFailedEvent(LevelPlayAdDisplayInfoError obj)
-        {
-            Debug.Log($"LevelPlay RewardedAdDisplayFailedEvent: {obj}");
-            _listener?.OnAdsShowFailed();
-            LevelPlay.SetPauseGame(false);
-        }
-        #endif
-
-        private void RewardedAdRewardedEvent(LevelPlayAdInfo adInfo, LevelPlayReward reward)
-        {
-            Debug.Log("LevelPlay Rewarded");
-            _listener?.OnAdsShowComplete();
-            LevelPlay.SetPauseGame(false);
-        }
-        private void InterstitialDisplayedEvent(LevelPlayAdInfo obj)
-        {
-            Debug.Log("LevelPlay InterstitialDisplayedEvent");
-            _listener?.OnAdsShowStart();
-            LevelPlay.SetPauseGame(false);
-        }
-        #endif
-
-
-        public override void Init(string _id, bool adSettingTestMode, IAdsListener listener)
-        {
-            Debug.Log("LevelPlay Init");
-            Init(_id);
-            Debug.Log("LevelPlay SetListener");
-            SetListener(listener);
+#if IRONSOURCE
+            if (!initialized) return;
+            if (adUnit.AdReference.adType == EAdType.Interstitial)
+            {
+                EnsureInterstitial(adUnit);
+                interstitialAd.LoadAd();
+            }
+            else if (adUnit.AdReference.adType == EAdType.Rewarded)
+            {
+                EnsureRewarded(adUnit);
+                rewardedAd.LoadAd();
+            }
+#endif
         }
 
         public override void Show(AdUnit adUnit)
         {
-            #if IRONSOURCE
-            if (adUnit.AdReference.adType == EAdType.Interstitial && _interstitialAd != null)
+#if IRONSOURCE
+            if (adUnit.AdReference.adType == EAdType.Interstitial && interstitialAd != null && interstitialAd.IsAdReady())
             {
-                if (_interstitialAd.IsAdReady())
-                {
-                    _interstitialAd.ShowAd();
-                    LevelPlay.SetPauseGame(true);
-                }
-            }
-            else if (adUnit.AdReference.adType == EAdType.Rewarded && _rewardedAd != null)
-            {
-                if (_rewardedAd.IsAdReady())
-                {
-                    _rewardedAd.ShowAd();
-                    LevelPlay.SetPauseGame(true);
-                }
+                listener?.Show(adUnit);
+                interstitialAd.ShowAd();
+                return;
             }
 
-            _listener?.Show(adUnit);
-            #endif
+            if (adUnit.AdReference.adType == EAdType.Rewarded && rewardedAd != null && rewardedAd.IsAdReady())
+            {
+                rewardedGranted = false;
+                listener?.Show(adUnit);
+                rewardedAd.ShowAd();
+                return;
+            }
+#endif
+            listener?.OnAdsShowFailed();
         }
-
-        public override void Load(AdUnit adUnit)
-        {
-            #if IRONSOURCE
-            if (adUnit.AdReference.adType == EAdType.Interstitial)
-            {
-                _interstitialAd = new LevelPlayInterstitialAd(adUnit.PlacementId);
-
-                _interstitialAd.OnAdLoaded += InterstitialAdLoadedEvent;
-                _interstitialAd.OnAdDisplayed += InterstitialDisplayedEvent;
-                _interstitialAd.OnAdLoadFailed += InterstitialAdLoadFailedEvent;
-                _interstitialAd.OnAdDisplayFailed += InterstitialAdDisplayFailedEvent;
-
-                _interstitialAd.LoadAd();
-            }
-            else if (adUnit.AdReference.adType == EAdType.Rewarded)
-            {
-                _rewardedAd = new LevelPlayRewardedAd(adUnit.PlacementId);
-
-                _rewardedAd.OnAdLoaded += RewardedAdLoadedEvent;
-                _rewardedAd.OnAdLoadFailed += RewardedAdLoadFailedEvent;
-                _rewardedAd.OnAdDisplayFailed += RewardedAdDisplayFailedEvent;
-                _rewardedAd.OnAdRewarded += RewardedAdRewardedEvent;
-
-                _rewardedAd.LoadAd();
-            }
-            #endif
-        }
-
-
-
 
         public override bool IsAvailable(AdUnit adUnit)
         {
-            #if IRONSOURCE
-            if (adUnit.AdReference.adType == EAdType.Interstitial)
-            {
-                return _interstitialAd != null && _interstitialAd.IsAdReady();
-            }
-
-            if (adUnit.AdReference.adType == EAdType.Rewarded)
-            {
-                return _rewardedAd != null && _rewardedAd.IsAdReady();
-            }
-            #endif
+#if IRONSOURCE
+            if (adUnit.AdReference.adType == EAdType.Interstitial) return interstitialAd != null && interstitialAd.IsAdReady();
+            if (adUnit.AdReference.adType == EAdType.Rewarded) return rewardedAd != null && rewardedAd.IsAdReady();
+#endif
             return false;
         }
 
-        public override void Hide(AdUnit adUnit)
-        {
-        }
+        public override void Hide(AdUnit adUnit) { }
     }
 }

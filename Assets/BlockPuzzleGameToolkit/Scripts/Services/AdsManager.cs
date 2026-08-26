@@ -11,6 +11,7 @@
 // // THE SOFTWARE.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using BlockPuzzleGameToolkit.Scripts.Popups;
@@ -19,9 +20,6 @@ using BlockPuzzleGameToolkit.Scripts.Services.Ads.AdUnits;
 using BlockPuzzleGameToolkit.Scripts.Settings;
 using BlockPuzzleGameToolkit.Scripts.System;
 using UnityEngine;
-#if UMP_AVAILABLE
-using GoogleMobileAds.Ump.Api;
-#endif
 
 namespace BlockPuzzleGameToolkit.Scripts.Services
 {
@@ -89,16 +87,11 @@ namespace BlockPuzzleGameToolkit.Scripts.Services
         {
             if (adsInitialized) return;
 
-            #if UMP_AVAILABLE && (UNITY_ANDROID || UNITY_IOS)
-            if (!ConsentInformation.CanRequestAds())
+            if (!HasResolvedConsentChoice())
             {
-                Debug.LogWarning("Ads remain disabled because UMP has not granted a requestable consent state.");
+                Debug.LogWarning("Ads remain disabled until the player has made a consent choice.");
                 return;
             }
-            #else
-            Debug.LogWarning("Ads remain disabled because the mobile UMP consent integration is unavailable.");
-            return;
-            #endif
 
             adsInitialized = true;
 
@@ -123,83 +116,37 @@ namespace BlockPuzzleGameToolkit.Scripts.Services
         {
             if (consentInfoUpdateInProgress) return;
             consentInfoUpdateInProgress = true;
-
-#if UMP_AVAILABLE && (UNITY_ANDROID || UNITY_IOS)
-            var request = new ConsentRequestParameters();
-            
-            if (Debug.isDebugBuild || Application.isEditor)
-            {
-                var debugSettings = new ConsentDebugSettings
-                {
-                    DebugGeography = DebugGeography.EEA
-                };
-                
-                var testDeviceIds = new List<string>();
-                // testDeviceIds.Add("YOUR-TEST-DEVICE-ID-HERE"); // Uncomment and add your device ID if needed
-                
-                if (testDeviceIds.Count > 0)
-                {
-                    debugSettings.TestDeviceHashedIds = testDeviceIds;
-                }
-                
-                request.ConsentDebugSettings = debugSettings;
-            }
-
-            ConsentInformation.Update(request, OnConsentInfoUpdated);
-#else
-            Debug.LogWarning("Advertising is disabled because UMP consent support is unavailable in this build.");
-            consentInfoUpdateInProgress = false;
-#endif
+            StartCoroutine(WaitForConsentChoice());
         }
 
-#if UMP_AVAILABLE
-        private void OnConsentInfoUpdated(FormError consentError)
+        private IEnumerator WaitForConsentChoice()
         {
-            if (consentError != null)
+            while (!HasResolvedConsentChoice())
             {
-                Debug.LogError($"Consent info update error: {consentError}");
-                consentInfoUpdateInProgress = false;
-                if (ConsentInformation.CanRequestAds())
-                {
-                    InitializeAds();
-                }
-                else
-                {
-                    Debug.LogWarning("Advertising remains disabled because consent information could not be refreshed.");
-                }
-                return;
+                yield return null;
             }
 
-            Debug.Log($"Consent status: {ConsentInformation.ConsentStatus}");
-
-            ConsentForm.LoadAndShowConsentFormIfRequired(OnConsentFormDismissed);
+            consentInfoUpdateInProgress = false;
+            InitializeAds();
         }
 
-        private void OnConsentFormDismissed(FormError formError)
+        public static bool HasResolvedConsentChoice()
         {
-            consentInfoUpdateInProgress = false;
+            return PlayerPrefs.GetInt("npa", -1) != -1;
+        }
 
-            if (formError != null)
-            {
-                Debug.LogError($"Consent form error: {formError}");
-            }
-            else
-            {
-                Debug.Log("Consent form completed");
-                Debug.Log($"Final consent status: {ConsentInformation.ConsentStatus}");
-                Debug.Log($"Can request personalized ads: {ConsentInformation.CanRequestAds()}");
-            }
+        public static bool HasPersonalizedAdsConsent()
+        {
+            return PlayerPrefs.GetInt("npa", -1) == 0;
+        }
 
-            if (ConsentInformation.CanRequestAds())
+        public void OnConsentPreferenceChanged()
+        {
+            if (!adsInitialized && HasResolvedConsentChoice())
             {
                 InitializeAds();
             }
-            else
-            {
-                Debug.LogWarning("Advertising remains disabled because consent does not permit requesting ads.");
-            }
         }
-#endif
 
         private void OnEnable()
         {
@@ -466,46 +413,23 @@ namespace BlockPuzzleGameToolkit.Scripts.Services
 
         public bool CanRequestPersonalizedAds()
         {
-#if UMP_AVAILABLE
-            return ConsentInformation.CanRequestAds();
-#else
-            return false;
-#endif
+            return HasPersonalizedAdsConsent();
         }
 
         public bool IsPrivacyOptionsRequired()
         {
-#if UMP_AVAILABLE
-            return ConsentInformation.PrivacyOptionsRequirementStatus == PrivacyOptionsRequirementStatus.Required;
-#else
-            return false;
-#endif
+            return true;
         }
 
         public void ShowPrivacyOptionsForm()
         {
-#if UMP_AVAILABLE
-            ConsentForm.ShowPrivacyOptionsForm(formError =>
-            {
-                if (formError != null)
-                {
-                    Debug.LogError($"Privacy options form error: {formError}");
-                }
-                else
-                {
-                    Debug.Log("Privacy options form shown successfully");
-                }
-            });
-#else
-            Debug.Log("UMP not available - cannot show privacy options");
-#endif
+            MenuManager.instance.ShowPopup<Popups.GDPR>();
         }
 
         public void ReconsiderUMPConsent()
         {
-#if UMP_AVAILABLE && (UNITY_ANDROID || UNITY_IOS)
-            ConsentInformation.Reset();
-#endif
+            PlayerPrefs.DeleteKey("npa");
+            PlayerPrefs.Save();
             StartConsentFlow();
         }
     }
