@@ -7,8 +7,8 @@ AssemblyDefinitionImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 297325
-  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
-  packageVersion: 2.2.6
-  assetPath: Assets/BlockPuzzleGameToolkit/Scripts/Services/IAP/CandySmith.IAP.asmdef
-  uploadId: 934666
+ productId: 297325
+ packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+ packageVersion: 2.2.6
+  assetPath: Assets/BlockPuzzleGameToolkit/Scripts/Services/IAP/mmgb.IAP.asmdef
+ uploadId: 934666

@@ -3,8 +3,8 @@ guid: 54ed5b0a667e4a0f987a5bacb1b15ba6
 timeCreated: 1722189029
 AssetOrigin:
   serializedVersion: 1
-  productId: 297325
-  packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
-  packageVersion: 2.2.6
-  assetPath: Assets/BlockPuzzleGameToolkit/Scripts/Localization/Editor/CandySmith.Localization.Editor.asmdef
-  uploadId: 934666
+ productId: 297325
+ packageName: 'Block Blast Puzzle: Game Toolkit | 250 levels'
+ packageVersion: 2.2.6
+  assetPath: Assets/BlockPuzzleGameToolkit/Scripts/Localization/Editor/mmgb.Localization.Editor.asmdef
+ uploadId: 934666
