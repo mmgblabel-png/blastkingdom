@@ -14,11 +14,11 @@ Backup*/
 *.apk
 *.unitypackage
 
-# IDE / editor metadata
+# Unity/Plastic metadata that should not be the source of truth
+.plastic/
+.utmp/
 .vscode/
 .vs/
-.utmp/
-.plastic/
 .idea/
 *.csproj.user
 *.suo
